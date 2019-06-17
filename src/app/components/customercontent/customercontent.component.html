@@ -1,0 +1,172 @@
+<div id="right-bar">
+  <div class="bg-light main-title">
+    <h2><i class="fas fa-users"></i> Customers</h2>
+    <div class="front-nav-bar">
+      Dashboard--> <b>Customers</b>
+    </div>
+  </div>
+
+  <div class="jumbotron dis content-area">
+
+    <div class="row">
+      <div class="col-sm-7">
+        <!--<div class="col-lg-6">-->
+
+        <div class="card">
+          <div class="card-header bg-primary">Customer Search</div>
+          <div class="card-body">
+
+            <!---->
+            <form id="searchCustomerForm">
+
+              <div class="form-group">
+                <form #frmCustomers="ngForm">
+                  <!--<input type="text" [(ngModel)]="customer.cid" name="clname" class="form-control"-->
+                  <!--placeholder="Input Name/Nic/Tp Here"-->
+                  <!--id="cname">-->
+
+                  <!---->
+
+                  <input #id type="text" class="form-control"
+                         placeholder="Input Name/Nic/Tp Here"
+                         id="cname">
+
+                </form>
+              </div>
+
+              <div class="form-group form-inline">
+                <button type="button" (click)="searchCustomer(id.value)" id="btncusSearch" class="btn btn-primary">
+                  Search
+                </button>
+              </div>
+            </form>
+
+
+            <!---->
+
+            <select class="form-control">
+              <option>Name</option>
+              <option>NIC</option>
+              <option>TP</option>
+            </select>
+          </div>
+          <!--</div>-->
+
+
+          <div class="form-action-buttons">
+            <div class="btn-group">
+              <button type="button" class="btn btn-danger">Delete</button>
+              <button type="button" class="btn btn-warning">Edit</button>
+              <button type="button" class="btn btn-info">Details</button>
+              <button type="button" class="btn btn-success">Clear</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 menu-button-group">
+          <div class="center-on-lg">
+            <div class="btn-group">
+
+              <button type="button" class="btn btn-info nb" data-toggle="modal" data-target="#myModal">New
+                Customer
+              </button>
+
+              <button type="button" class="btn btn-warning">View All Customers</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--Modal to Customized Customer-->
+
+    <div class="col-sm-10" style="background-color: #d4e2f1">
+      <form #frmCustomers="ngForm">
+        <br>
+        <!---->
+
+        <!---->
+        <div class="form-group">
+          <label>Customer Name</label>
+          <!--<input type="text" [(ngModel)]="customer.name" name="name" class="form-control" id="cusID"-->
+          <!--placeholder="Input Customer Name">-->
+
+          <input #name type="text" class="form-control" id="cusID"
+                 placeholder="Input Customer Name">
+        </div>
+
+        <div class="form -group">
+          <label>Customer Address</label>
+          <!--<input type="text" [(ngModel)]="customer.address" name="address" class="form-control" id="cusAddress"-->
+          <!--placeholder="Input Customer Address">-->
+          <input #address type="text" class="form-control" id="cusAddress"
+                 placeholder="Input Customer Address">
+        </div>
+
+        <div class="form-group">
+          <label>Customer ContactNo</label>
+          <!--<input type="text" [(ngModel)]="customer.contactNo" name="contactNo" class="form-control" id="cusContactNo"-->
+          <!--placeholder="Input ContactNo">-->
+          <input #contactNo type="text" class="form-control" id="cusContactNo"
+                 placeholder="Input ContactNo">
+        </div>
+
+        <!--<button type="submit" (click)="saveCustomer()" class="btn btn-success">Save</button>-->
+
+        <!---->
+        <button type="submit"
+                (click)="saveCustomer(name.value,address.value,contactNo.value)"
+                class="btn btn-success">
+          Save
+        </button>
+        <!---->
+
+        <button type="submit"
+                (click)="updateCustomer(id.value,name.value,address.value,contactNo.value)"
+                class="btn btn-primary">
+          Update
+        </button>
+
+        <button type="submit"
+                (click)="deleteCustomer(id.value)"
+                class="btn btn-danger">
+          Delete
+        </button>
+
+        <br>
+      </form>
+
+      <!--</ng-form>-->
+
+    </div>
+
+    <!--End Of Modal-->
+
+  </div>
+
+  <!--table Form-->
+
+  <table class="table table-bordered" width="700px">
+    <thead class="bg-info">
+    <tr>
+      <th>ID Number</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Conatact Number</th>
+    </tr>
+    </thead>
+    <tbody class="bg-light" id="tbody">
+    <tr *ngFor="let customer of customerList">
+      <td>{{customer.cid}}</td>
+      <td>{{customer.name}}</td>
+      <td>{{customer.address}}</td>
+      <td>{{customer.contactNo}}</td>
+    </tbody>
+  </table>
+
+  <!--Table End-->
+
+  <div class="footer-text">Developed & Distributed By Udara Jayawardena</div>
+
+</div>

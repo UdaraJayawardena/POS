@@ -1,0 +1,127 @@
+<div id="right-bar">
+  <div class="bg-light main-title">
+    <h2><i class="fas fa-cubes"></i> Items</h2>
+    <div class="front-nav-bar">
+      Dashboard--> <b>Items</b>
+    </div>
+  </div>
+
+  <div class="jumbotron dis content-area">
+    <div class="row">
+      <div class="col-sm-7">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header bg-primary">Item Search</div>
+            <div class="card-body">
+
+              <!---->
+
+              <form id="searchItemForm">
+
+                <div class="form-group">
+                  <form #frmItems="ngForm">
+                    <input type="text" [(ngModel)]="item.iid" name="iname" class="form-control"
+                           placeholder="Input Item (Name/Code) Here"
+                           id="iname">
+                  </form>
+                </div>
+
+                <!---->
+                <div class="form-group form-inline">
+                  <button type="button" (click)="searchItem()" id="btnitemSearch" class="btn btn-primary">
+                    Search
+                  </button>
+                </div>
+              </form>
+              <!---->
+
+              <select class="form-control">
+                <option>Name</option>
+                <option>Item Code</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-action-buttons">
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-warning">Edit</button>
+            <button type="button" class="btn btn-info">Details</button>
+            <button type="button" class="btn btn-success" onclick="ClearFields();">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 menu-button-group">
+        <div class="center-on-lg">
+          <div class="btn-group">
+
+            <button type="button" class="btn btn-info nb" data-toggle="modal"
+                    data-target="#myModalItem">New Item
+            </button>
+            <button type="button" class="btn btn-warning">View All Items</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal-->
+
+  <div class="col-sm-3" style="background-color: #d9f1e3">
+    <form #frmItems="ngForm">
+      <br>
+
+      <div class="form-group">
+        <label>Item Name</label>
+        <input type="text" [(ngModel)]="item.names" name="name" class="form-control" id="itemID"
+               placeholder="Input Item Name">
+      </div>
+
+      <div class="form-group">
+        <label>Unit Price</label>
+        <input type="text" [(ngModel)]="item.unitprice" name="unitprice" class="form-control" id="itemprice"
+               placeholder="Input Item Price">
+      </div>
+
+      <div class="form-group">
+        <label>Qty On Hand</label>
+        <input type="text" [(ngModel)]="item.qtyonhand" name="qtyonhand" class="form-control" id="qtyonhand"
+               placeholder="Input Qty">
+      </div>
+
+      <button type="submit" (click)="saveItem()" class="btn btn-success">Save</button>
+
+      <button type="submit" (click)="updateItem()" class="btn btn-primary">Update</button>
+
+      <button type="submit" (click)="deleteItem()" class="btn btn-danger">Delete</button>
+      <br>
+
+    </form>
+  </div>
+
+  <table class="table table-bordered">
+    <thead class="bg-info">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+    </thead>
+
+    <tbody class="bg-light" id="tbody">
+    <tr *ngFor="let Item of itemList">
+      <td>{{item.iid}}</td>
+      <td>{{item.names}}</td>
+      <td>{{item.unitprice}}</td>
+      <td>{{item.qtyonhand}}</td>
+    </tbody>
+  </table>
+
+  <!--table End-->
+
+  <div class="footer-text">Developed & Distributed By Udara Jayawardena</div>
+</div>

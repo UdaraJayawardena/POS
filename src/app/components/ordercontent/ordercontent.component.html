@@ -1,0 +1,139 @@
+<div id="right-bar">
+  <div class="bg-light main-title">
+    <h2><i class="fas fa-cubes"></i> Orders</h2>
+    <div class="front-nav-bar">
+      Dashboard > <b>Orders</b>
+    </div>
+  </div>
+  <div class="jumbotron dis content-area">
+    <div class="row orders-box">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header bg-primary">Customer Details</div>
+          <div class="card-body">
+            <form>
+              <div class="form-group form-inline">
+                <label>Customer</label>
+                <select name="item" id="sele" class="form-control">
+                </select>
+                <!--<button class="btn btn-success col-12 col-xl-auto mt-2 mt-xl-0 ml-0 ml-xl-2">New Customer</button>-->
+                <button type="button" class="btn btn-success nb" data-toggle="modal"
+                        data-target="#myModal">New Customer
+                </button>
+              </div>
+              <div class="form-group">
+                <label>Address</label>
+                <input id="addr" name="address" class="form-control">
+                <label>Tel No:</label>
+                <input id="tel" name="address" class="form-control">
+                <label>Price</label>
+                <input id="cref" name="address" class="form-control">
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header bg-primary">Invoice Details</div>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label>Date :</label>
+                <input type="date" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Order ID :</label>
+                <input type="text" class="form-control" placeholder="O001">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header bg-primary">Item Select</div>
+          <div class="card-body">
+            <form>
+
+              <div class="form-group">
+                <label>Item</label>
+                <select id="itsl" name="item" class="form-control">
+                </select>
+              </div>
+              <div class="form-group form-inline" style="margin-top: 30px;">
+                <label>Price</label>
+                <input id="pru" name="itemp" type="text" class="form-control">
+                <label>Quntity</label>
+                <input id="qun" name="itemq" type="text" class="form-control">
+              </div>
+              <hr>
+              <div class="text-center"><b>Select Orderd Item Quantity</b></div>
+              <hr>
+
+              <div class="form-group">
+                <label>Order Quantity..</label>
+                <input id="oqun" type="text" class="form-control wid">
+
+              </div>
+
+              <div class="form-group text-right">
+                <button type="button" onclick="addOrd()" class="btn btn-danger">Place Order</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-bordered">
+      <thead class="bg-info">
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quatity</th>
+        <th class="tot">Tot</th>
+      <tr>
+      </thead>
+      <tbody id="tab4">
+
+      </tbody>
+    </table>
+
+    <section class="content-box-2">
+
+      <h2 id="tt">Total : <span id="totalP">00.0</span><span class="rs">Rs/=</span></h2>
+      <br><br>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group form-inline">
+            <label>Cash</label>
+
+            <input id="inputC" class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group form-inline">
+            <label>Balance</label>
+            <input type="text" class="form-control col-12 col-lg-auto">
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group form-inline">
+            <label>Discount</label>
+            <input type="text" class="form-control col-12 col-lg-auto">
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="menu-button-group" style="margin-top: 10px;">
+      <div class="center-on-lg">
+        <div class="btn-group">
+          <button class="btn btn-warning" style="float: right" onclick="fulltc()">Clear</button>
+          <button type="button" class="btn btn-success">Renew Order</button>
+
+          <button type="button" id="mainB" class="btn btn-danger">Submit Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-text">Developed & Distributed By Udara Jayawardena</div>
+</div>
