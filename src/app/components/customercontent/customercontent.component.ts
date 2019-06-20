@@ -10,6 +10,7 @@ import {NgForm} from '@angular/forms';
 })
 export class CustomercontentComponent implements OnInit {
   customers: Customer[] = [];
+  SCustomers: Customer[] = [];
   selectedCustomer: Customer = new Customer('', '', '', 0);
 
   @ViewChild('txtId') txtId: ElementRef;
@@ -20,13 +21,14 @@ export class CustomercontentComponent implements OnInit {
 
   ngOnInit() {
     this.customerService.getAllCustomers().subscribe(customers => {
+      console.log(customers);
       this.customers = customers;
     });
   }
 
   saveCustomer(): void {
+    console.log('Save Click');
     if (!this.frmCustomer.invalid) {
-
       this.customerService.saveCustomer(this.selectedCustomer)
         .subscribe(resp => {
           if (resp) {
@@ -40,6 +42,32 @@ export class CustomercontentComponent implements OnInit {
     } else {
       alert('Invalid Data, Please Correct...!');
     }
+  }
+
+  // updateCustomer(id, name, address, salary): void {
+  //   console.log('Update Click');
+  // }
+
+  deleteCustomer(id): void {
+    console.log('Delete Click..');
+    const customerIdValDel = id;
+    this.customerService.deleteCustomer(customerIdValDel).subscribe(
+      (result) => {
+        alert('Customer Deleted Successfully...');
+        this.customerService.getAllCustomers();
+      }
+    );
+  }
+
+
+  searchCustomer(id): void {
+    console.log('search Customer in component');
+    const customerIdValSer = id;
+    this.customerService.searchCustomer(customerIdValSer).subscribe(SCustomers => {
+      console.log(SCustomers);
+      this.SCustomers = SCustomers;
+      console.log('SCustomer : ' + this.SCustomers);
+    });
   }
 
 }
