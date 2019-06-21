@@ -18,9 +18,10 @@
                 <!--</select>-->
                 <!---->
 
-                <select class="form-control" name="" id="cusid">
+                <select class="form-control" name="" id="cusid" (click)="getSelectedId($event)">
                   <option value="" disabled selected>Select Customer Here</option>
-                  <option *ngFor="let cus of customers;" value="{{cus.id}}">{{cus.id}}</option>
+                  <option *ngFor="let cus of customers;" value="{{cus.id}}">{{cus.id}}
+                  </option>
                 </select>
 
                 <!--<button class="btn btn-success col-12 col-xl-auto mt-2 mt-xl-0 ml-0 ml-xl-2">New Customer</button>-->
@@ -29,12 +30,12 @@
                 </button>
               </div>
               <div class="form-group">
+                <label>Name</label>
+                <input id="name" name="name" [(ngModel)]="cusname" class="form-control">
                 <label>Address</label>
-                <input id="addr" name="address" class="form-control">
-                <label>Tel No:</label>
-                <input id="tel" name="tel" class="form-control">
-                <label>Price</label>
-                <input id="cref" name="price" class="form-control">
+                <input id="address" name="address" [(ngModel)]="cusaddress" class="form-control">
+                <label>Salary</label>
+                <input id="salary" name="salary" [(ngModel)]="cussalary" class="form-control">
               </div>
             </form>
           </div>
@@ -63,7 +64,7 @@
 
               <div class="form-group">
                 <label>Item</label>
-                <select class="form-control" name="" id="code">
+                <select class="form-control" name="" id="code" (click)="getSelectedCode($event)">
                   <option value="" disabled selected>Select Item Here</option>
                   <option *ngFor="let is of items;" value="{{is.code}}">{{is.code}}</option>
                 </select>
@@ -71,9 +72,9 @@
               </div>
               <div class="form-group form-inline" style="margin-top: 30px;">
                 <label>Item Price</label>
-                <input id="pru" name="itemp" type="text" class="form-control">
+                <input id="pru" name="itemp" [(ngModel)]="itemprice" type="text" class="form-control">
                 <label>Quantity</label>
-                <input id="qun" name="itemq" type="text" class="form-control">
+                <input id="qun" name="itemq" [(ngModel)]="itemqtyonhand" type="text" class="form-control">
               </div>
               <hr>
               <div class="text-center"><b>Select Orderd Item Quantity</b></div>

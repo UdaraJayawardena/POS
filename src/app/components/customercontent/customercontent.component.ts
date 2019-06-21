@@ -12,17 +12,25 @@ export class CustomercontentComponent implements OnInit {
   customers: Customer[] = [];
   SCustomers: Customer[] = [];
   selectedCustomer: Customer = new Customer('', '', '', 0);
+  cusid = '';
+  cusname = '';
+  cusaddress = '';
+  cussalary = '';
+  cusplaceID = '';
 
   @ViewChild('txtId') txtId: ElementRef;
   @ViewChild('frmCustomer') frmCustomer: NgForm;
-
   constructor(private customerService: CustomerService) {
   }
 
   ngOnInit() {
     this.customerService.getAllCustomers().subscribe(customers => {
-      console.log(customers);
+      console.log('get All Customers');
       this.customers = customers;
+
+      const customer = this.customers.find(value => value.id === value.id);
+      console.log(customer);
+
     });
   }
 
@@ -71,12 +79,11 @@ export class CustomercontentComponent implements OnInit {
 
   searchCustomer(id): void {
     console.log('search Customer in component');
-    const customerIdValSer = id;
-    this.customerService.searchCustomer(customerIdValSer).subscribe(SCustomers => {
-      console.log(SCustomers);
-      this.SCustomers = SCustomers;
-      console.log('SCustomer : ' + this.SCustomers);
-    });
+    const CUSVals = this.customers.find((value => value.id === 'C005'));
+    this.cusid = id;
+    this.cusname = CUSVals.name;
+    this.cusaddress = CUSVals.address;
+    this.cussalary = String(CUSVals.salary);
   }
 
 }
