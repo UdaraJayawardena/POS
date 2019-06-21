@@ -35,7 +35,7 @@
                   Search
                 </button>
 
-                <tr *ngFor="let customer of SCustomers"></tr>
+                <!--<tr *ngFor="let customer of SCustomers"></tr>-->
               </div>
             </form>
 
@@ -58,14 +58,14 @@
 
         <div class="col-lg-6 menu-button-group">
           <div class="center-on-lg">
-            <div class="btn-group">
+            <!--<div class="btn-group">-->
 
-              <button type="button" class="btn btn-info nb" data-toggle="modal" data-target="#myModal">New
-                Customer
-              </button>
+            <!--<button type="button" class="btn btn-info nb" data-toggle="modal" data-target="#myModal">New-->
+            <!--Customer-->
+            <!--</button>-->
 
-              <button type="button" class="btn btn-warning">View All Customers</button>
-            </div>
+            <!--<button type="button" class="btn btn-warning">View All Customers</button>-->
+            <!--</div>-->
           </div>
         </div>
 
@@ -82,28 +82,29 @@
             <label>Customer ID</label>
 
             <input #txtId name="txtId" [(ngModel)]="selectedCustomer.id" class="form-control" type="text"
-                   placeholder="Input Customer ID">
+                   placeholder="Input Customer ID" required pattern="^C\d{3}$">
           </div>
 
           <div class="form -group">
             <label>Customer Name</label>
 
             <input #txtName name="txtName" class="form-control" type="text" [(ngModel)]="selectedCustomer.name"
-                   placeholder="Input Customer Name">
+                   placeholder="Input Customer Name" required pattern="\w{4}.+">
           </div>
 
           <div class="form-group">
             <label>Customer Address</label>
 
-            <input #txtAddress name="txtAddress" class="form-control" type="text" [(ngModel)]="selectedCustomer.address"
-                   placeholder="Input Address">
           </div>
+          <input #txtAddress name="txtAddress" class="form-control" type="text" [(ngModel)]="selectedCustomer.address"
+                 placeholder="Input Address">
 
           <div class="form-group">
             <label>Customer Salary</label>
 
             <input #txtSalary name="txtSalary" class="form-control" type="text" [(ngModel)]="selectedCustomer.salary"
-                   placeholder="Input Salary">
+                   placeholder="Input Salary" required
+            >
           </div>
 
           <button type="submit"
@@ -111,7 +112,7 @@
             Save
           </button>
 
-          <button type="submit"
+          <button type="button"
                   (click)="updateCustomer(txtId.value,txtName.value,txtAddress.value,txtSalary.value)"
                   class="btn btn-primary">
             Update
@@ -139,7 +140,6 @@
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Address</th>
       <th>Address</th>
       <th>Salary</th>
     </tr>

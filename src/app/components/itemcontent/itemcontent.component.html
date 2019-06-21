@@ -1,6 +1,6 @@
 <div id="right-bar">
   <div class="bg-light main-title">
-    <h2><i class="fas fa-cubes"></i> Items</h2>
+    <h2><i class="fas fa-cubes"></i> Item Pane</h2>
     <div class="front-nav-bar">
       Dashboard--> <b>Items</b>
     </div>
@@ -17,21 +17,20 @@
               <!---->
 
 
+              <div class="form-group">
+                <form #frmItems="ngForm">
+                  <input type="text" name="iname" class="form-control"
+                         placeholder="Input Item (Name/Code) Here"
+                         id="iname">
+                </form>
+              </div>
 
-                <div class="form-group">
-                  <form #frmItems="ngForm">
-                    <input type="text" [(ngModel)]="item.iid" name="iname" class="form-control"
-                           placeholder="Input Item (Name/Code) Here"
-                           id="iname">
-                  </form>
-                </div>
-
-                <!---->
-                <div class="form-group form-inline">
-                  <button type="button" (click)="searchItem()" id="btnitemSearch" class="btn btn-primary">
-                    Search
-                  </button>
-                </div>
+              <!---->
+              <div class="form-group form-inline">
+                <button type="button" id="btnitemSearch" class="btn btn-primary">
+                  Search
+                </button>
+              </div>
 
               <!---->
 
@@ -61,13 +60,13 @@
 
       <div class="col-lg-6 menu-button-group">
         <div class="center-on-lg">
-          <div class="btn-group">
+          <!--<div class="btn-group">-->
 
-            <button type="button" class="btn btn-info nb" data-toggle="modal"
-                    data-target="#myModalItem">New Item
-            </button>
-            <button type="button" class="btn btn-warning">View All Items</button>
-          </div>
+          <!--<button type="button" class="btn btn-info nb" data-toggle="modal"-->
+          <!--data-target="#myModalItem">New Item-->
+          <!--</button>-->
+          <!--<button type="button" class="btn btn-warning">View All Items</button>-->
+          <!--</div>-->
         </div>
       </div>
     </div>
@@ -75,33 +74,51 @@
 
   <!--Modal-->
 
-  <div class="col-sm-3" style="background-color: #d9f1e3">
-    <form #frmItems="ngForm">
+  <div class="col-sm-10" style="background-color: #d9f1e3">
+    <form (ngSubmit)="saveItem()" #frmItems="ngForm">
       <br>
 
       <div class="form-group">
-        <label>Item Name</label>
-        <input type="text" [(ngModel)]="item.names" name="name" class="form-control" id="itemID"
-               placeholder="Input Item Name">
+        <label>Item Code</label>
+        <input #txtCode type="text" name="txtCode" [(ngModel)]="selectedItem.code" class="form-control" id="itemCode"
+               placeholder="Input Item Code">
+      </div>
+
+      <div class="form-group">
+        <label>Item Description</label>
+        <input #txtDescription type="text" name="txtDescription" [(ngModel)]="selectedItem.description"
+               class="form-control"
+               id="itemDescription"
+               placeholder="Input Item Description">
       </div>
 
       <div class="form-group">
         <label>Unit Price</label>
-        <input type="text" [(ngModel)]="item.unitprice" name="unitprice" class="form-control" id="itemprice"
-               placeholder="Input Item Price">
+        <input #txtUnitPrice type="text" name="txtunitprice" [(ngModel)]="selectedItem.unitPrice" class="form-control"
+               id="itemPrice"
+               placeholder="Input Item UnitPrice">
       </div>
 
       <div class="form-group">
         <label>Qty On Hand</label>
-        <input type="text" [(ngModel)]="item.qtyonhand" name="qtyonhand" class="form-control" id="qtyonhand"
+        <input #txtQtyOnHand type="text" name="txtqtyonhand" [(ngModel)]="selectedItem.qtyOnHand" class="form-control"
+               id="qtyonhand"
                placeholder="Input Qty">
       </div>
 
-      <button type="submit" (click)="saveItem()" class="btn btn-success">Save</button>
+      <button type="submit"
+              class="btn btn-success">Save
+      </button>
 
-      <button type="submit" (click)="updateItem()" class="btn btn-primary">Update</button>
+      <button type="button"
+              (click)="updateItem(txtCode.value,txtDescription.value,txtUnitPrice.value,txtQtyOnHand.value)"
+              class="btn btn-primary">Update
+      </button>
 
-      <button type="submit" (click)="deleteItem()" class="btn btn-danger">Delete</button>
+      <button type="button"
+              (click)="deleteItem(txtCode.value)"
+              class="btn btn-danger">Delete
+      </button>
       <br>
 
     </form>
@@ -110,19 +127,20 @@
   <table class="table table-bordered">
     <thead class="bg-info">
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Quantity</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Unit Price</th>
+      <th>Qty On Hand</th>
     </tr>
     </thead>
 
     <tbody class="bg-light" id="tbody">
-    <tr *ngFor="let Item of itemList">
-      <td>{{item.iid}}</td>
-      <td>{{item.names}}</td>
-      <td>{{item.unitprice}}</td>
-      <td>{{item.qtyonhand}}</td>
+    <tr *ngFor="let item of items" (click)="selectedItem=item">
+      <td>{{item.code}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.unitPrice}}</td>
+      <td>{{item.qtyOnHand}}</td>
+    </tr>
     </tbody>
   </table>
 

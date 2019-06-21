@@ -22,9 +22,9 @@ export class CustomerService {
     return this.http.post<boolean>(this.baseUrl, customer);
   }
 
-  // updateCustomer(customer: Customer): Observable<boolean> {
-  //   return this.http.put<boolean>(this.baseUrl, customer);
-  // }
+  updateCustomer(customer: Customer): Observable<boolean> {
+    return this.http.put<boolean>(this.baseUrl, customer);
+  }
 
   deleteCustomer(id: number): Observable<Customer[]> {
     return this.http.delete<Customer[]>(this.baseUrl + '?cusid=' + id);

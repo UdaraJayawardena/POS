@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer} from '../../dto/customer';
 import {CustomerService} from '../../service/customer.service';
+import {Item} from '../../dto/item';
+import {ItemService} from '../../service/item.service';
 
 @Component({
   selector: 'app-ordercontent',
@@ -9,9 +11,10 @@ import {CustomerService} from '../../service/customer.service';
 })
 export class OrdercontentComponent implements OnInit {
   customers: Customer[] = [];
+  items: Item[] = [];
 
 
-  constructor(private customerService: CustomerService) {
+  constructor(private customerService: CustomerService, private itemService: ItemService) {
   }
 
   ngOnInit() {
@@ -19,10 +22,11 @@ export class OrdercontentComponent implements OnInit {
       console.log(customers);
       this.customers = customers;
     });
-  }
 
-  getCustomer() {
-    console.log(this.customers);
+    this.itemService.getAllItems().subscribe(items => {
+      console.log(items);
+      this.items = items;
+    });
   }
 
 }

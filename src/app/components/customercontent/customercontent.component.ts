@@ -34,6 +34,7 @@ export class CustomercontentComponent implements OnInit {
           if (resp) {
             alert('Customer has been saved successfully');
             this.customers.push(this.selectedCustomer);
+            this.customerService.getAllCustomers();
           } else {
             alert('Failed to save the customer');
           }
@@ -44,9 +45,17 @@ export class CustomercontentComponent implements OnInit {
     }
   }
 
-  // updateCustomer(id, name, address, salary): void {
-  //   console.log('Update Click');
-  // }
+  updateCustomer(id, name, address, salary): void {
+    console.log('Update Click');
+    const cusUpdate = new Customer(id, name, address, salary);
+    console.log(cusUpdate);
+    this.customerService.updateCustomer(cusUpdate).subscribe(
+      (result) => {
+        alert('Update successfull..');
+        this.customerService.getAllCustomers();
+      }
+    );
+  }
 
   deleteCustomer(id): void {
     console.log('Delete Click..');
